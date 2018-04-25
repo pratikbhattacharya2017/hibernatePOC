@@ -1,0 +1,64 @@
+package com.topgear.assignment;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+
+import com.topgear.assignment.hibernate.Student;
+import com.topgear.connection.Connection;
+
+public class MainClass {
+	public static void main(String[] args) {
+		SessionFactory factory=Connection.getConnection();
+		Session session=factory.openSession();
+		
+		try{
+			/*	Student st=new Student();
+				st.setEmail("uu");
+				st.setFirstName("pratik");
+				st.setLastName("bhattacharya");
+				Transaction tx = session.beginTransaction();
+				int i= (int) session.save(st);
+				System.out.println("primary key"+i);
+				tx.commit();
+				session.close(); */
+	/*		List<Student> studentList=session.createQuery("from Student").getResultList();
+			for(Student s: studentList){
+				System.out.print("Email "+s.getEmail());
+				System.out.print(" primary "+s.getId());
+				System.out.print(" Name "+s.getFirstName());
+				System.out.println("");
+				
+			}
+	*/	
+			
+			@SuppressWarnings("deprecation")
+			Criteria cr=session.createCriteria(Student.class);
+		//cr.setProjection(Projections.sum("id"));
+			cr.setFirstResult(2);
+			cr.setMaxResults(3);	
+			List<Student> studentList=cr.list();
+			//System.out.println(studentList.get(0));
+		
+			
+			for(Student s: studentList){
+				System.out.print("Email "+s.getEmail());
+				System.out.print(" primary "+s.getId());
+				System.out.print(" Name "+s.getFirstName());
+				System.out.println("");
+				
+			}
+		
+			
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+}

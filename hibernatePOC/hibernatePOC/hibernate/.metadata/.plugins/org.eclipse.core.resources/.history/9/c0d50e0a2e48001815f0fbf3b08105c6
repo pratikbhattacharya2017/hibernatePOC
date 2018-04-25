@@ -1,0 +1,5 @@
+package com.topgear.connection;
+
+public static class Connection {
+
+}

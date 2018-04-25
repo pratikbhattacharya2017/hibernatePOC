@@ -1,0 +1,17 @@
+
+public class ConnectionTest {
+	
+	public static void main(String[] args) {
+		
+		String JdbcURL="jdbc:mysql://localhost:3306/test3";
+		String userName="admin";
+		String password="";
+		try{
+			
+		}
+		catch(Exception e){
+			System.out.println(e.printStackTrace());
+		}
+	}
+
+}

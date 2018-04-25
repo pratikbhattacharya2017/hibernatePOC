@@ -1,0 +1,42 @@
+package com.topgear.assignment;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.topgear.assignment.hibernate.Student;
+import com.topgear.connection.Connection;
+
+public class MainClass {
+	public static void main(String[] args) {
+		SessionFactory factory=Connection.getConnection();
+		Session session=factory.openSession();
+		
+		try{
+			/*	Student st=new Student();
+				st.setEmail("uu");
+				st.setFirstName("pratik");
+				st.setLastName("bhattacharya");
+				Transaction tx = session.beginTransaction();
+				int i= (int) session.save(st);
+				System.out.println("primary key"+i);
+				tx.commit();
+				session.close(); */
+			List<Student> studentList=session.createQuery("from Student").getResultList();
+			for(Student s: studentList){
+				System.out.print("Email "+s.getEmail());
+				System.out.print(" primary "+s.getId());
+				System.out.print(" Name "+s.getFirstName());
+				System.out.println("");
+				
+			}
+				
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+}
